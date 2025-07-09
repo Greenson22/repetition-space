@@ -4,41 +4,32 @@
 
 import { useEffect, useState } from 'react';
 import Card from '@/components/fragments/Card';
-// Impor data dan tipe yang diperlukan, termasuk untuk diskusi
-import { defaultPlants, defaultDiscussions, type Plant, type DiscussionItem } from '@/lib/data';
+import { defaultData, type Plant } from '@/lib/data';
 
 const DashboardView = () => {
-  const [plants, setPlants] = useState<Plant[]>([]);
-  const [discussions, setDiscussions] = useState<DiscussionItem[]>([]);
+  const [data, setData] = useState<Plant[]>([]);
 
   useEffect(() => {
-    // Memuat data tanaman dan diskusi dari file data.ts
-    setPlants(defaultPlants);
-    setDiscussions(defaultDiscussions);
+    setData(defaultData);
   }, []);
 
   return (
     <>
       <header className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-slate-800">Koleksi Saya</h2>
+          <h2 className="text-3xl font-bold text-slate-800">Koleksi Materi</h2>
           <p className="text-slate-500 mt-1">Daftar materi yang sedang Anda pelajari.</p>
         </div>
       </header>
       
-      {plants.length > 0 ? (
+      {data.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {plants.map(plant => {
-            // Saring diskusi yang relevan untuk setiap tanaman berdasarkan plant.id
-            const plantDiscussions = discussions.filter(d => d.plantId === plant.id);
-            return (
-              <Card 
-                key={plant.id}
-                plant={plant} 
-                discussions={plantDiscussions} // Teruskan data diskusi yang sudah disaring
-              />
-            );
-          })}
+          {data.map(plant => (
+            <Card 
+              key={plant.id}
+              plant={plant} 
+            />
+          ))}
         </div>
       ) : (
         <div className="text-center py-16">

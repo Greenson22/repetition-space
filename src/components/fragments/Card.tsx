@@ -1,13 +1,16 @@
 // src/components/fragments/Card.tsx
 
-import type { Plant, DiscussionItem } from '@/lib/data';
+import type { Plant } from '@/lib/data';
 
+// Props sekarang hanya menerima satu objek Plant
 type CardProps = {
   plant: Plant;
-  discussions: DiscussionItem[];
 };
 
-const Card = ({ plant, discussions }: CardProps) => {
+const Card = ({ plant }: CardProps) => {
+  // Mengakses 'discussions' dari dalam objek 'plant'
+  const { discussions } = plant;
+
   return (
     <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
       {/* BAGIAN ATAS KARTU */}
@@ -27,10 +30,9 @@ const Card = ({ plant, discussions }: CardProps) => {
 
       {/* BAGIAN BAWAH KARTU */}
       <div className="p-5 flex flex-col flex-grow">
-        {/* Menggunakan divide untuk membuat garis putus-putus antar item */}
         <div className="flex-grow text-sm text-slate-600 divide-y divide-dashed divide-slate-200">
-          {discussions.map((item, index) => (
-            <div key={item.id || index} className="flex justify-between items-center py-3">
+          {discussions.map((item) => (
+            <div key={item.id} className="flex justify-between items-center py-3">
               <span>{item.text}</span>
               <span className="text-xs text-slate-500 whitespace-nowrap">{item.repetitionInfo}</span>
             </div>
