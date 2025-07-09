@@ -6,8 +6,9 @@ import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
 import Button from '@/components/elements/Button';
 import FormModal from '@/components/fragments/FormModal';
-import { defaultPlants, type Plant } from '@/lib/data';
-import Card from '@/components/fragments/Card'; // <-- Impor komponen Card
+// Impor juga DiscussionItem
+import { defaultPlants, type Plant, type DiscussionItem } from '@/lib/data';
+import Card from '@/components/fragments/Card';
 
 const DashboardView = () => {
   const [plants, setPlants] = useState<Plant[]>([]);
@@ -52,14 +53,22 @@ const DashboardView = () => {
     setPlants(updatedPlants);
   };
 
-  const getRepetitionInfo = (index: number) => {
-      const date = new Date();
-      date.setDate(date.getDate() + (index * 10));
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      const repetition = `R${index + 1}D`;
-      return `${day}-${month}-${year} / ${repetition}`;
+  // Fungsi untuk menghasilkan data pembahasan dengan info repetisi
+  const getDiscussionsWithRepetitionInfo = (plantIndex: number): DiscussionItem[] => {
+      const discussions = ['Pembahasan 1', 'Pembahasan 2', 'Pembahasan 3'];
+      return discussions.map((text, discussionIndex) => {
+          const date = new Date();
+          // Logika tanggal bisa disesuaikan, ini hanya contoh sederhana
+          date.setDate(date.getDate() + (plantIndex * 10) + discussionIndex); 
+          const day = String(date.getDate()).padStart(2, '0');
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const year = date.getFullYear();
+          const repetition = `R${discussionIndex + 1}D`;
+          return {
+              text: text,
+              repetitionInfo: `${day}-${month}-${year} / ${repetition}`
+          };
+      });
   }
 
   return (
@@ -80,8 +89,7 @@ const DashboardView = () => {
             <Card 
               key={plant.id} 
               plant={plant}
-              index={index}
-              repetitionInfo={getRepetitionInfo(index)}
+              discussions={getDiscussionsWithRepetitionInfo(index)}
               onEdit={handleOpenModal}
               onDelete={handleDeletePlant}
             />
