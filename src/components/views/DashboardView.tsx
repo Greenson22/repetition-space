@@ -3,73 +3,19 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { Plus } from 'lucide-react';
-import Button from '@/components/elements/Button';
-import FormModal from '@/components/fragments/FormModal';
-// Impor juga DiscussionItem
-import { defaultPlants, type Plant, type DiscussionItem } from '@/lib/data';
 import Card from '@/components/fragments/Card';
+// Impor data dan tipe yang diperlukan, termasuk untuk diskusi
+import { defaultPlants, defaultDiscussions, type Plant, type DiscussionItem } from '@/lib/data';
 
 const DashboardView = () => {
   const [plants, setPlants] = useState<Plant[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [plantToEdit, setPlantToEdit] = useState<Plant | null>(null);
+  const [discussions, setDiscussions] = useState<DiscussionItem[]>([]);
 
   useEffect(() => {
-    const savedData = localStorage.getItem('plantData');
-    const initialPlants = savedData ? JSON.parse(savedData) : defaultPlants;
-    setPlants(initialPlants);
+    // Memuat data tanaman dan diskusi dari file data.ts
+    setPlants(defaultPlants);
+    setDiscussions(defaultDiscussions);
   }, []);
-
-  useEffect(() => {
-    if (plants.length > 0) {
-      localStorage.setItem('plantData', JSON.stringify(plants));
-    }
-  }, [plants]);
-
-  const handleOpenModal = (plant: Plant | null = null) => {
-    setPlantToEdit(plant);
-    setIsModalOpen(true);
-  };
-  
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setPlantToEdit(null);
-  };
-
-  const handleSavePlant = (plantData: Plant) => {
-    let updatedPlants;
-    if (plantToEdit) {
-      updatedPlants = plants.map(p => p.id === plantData.id ? plantData : p);
-    } else {
-      updatedPlants = [...plants, { ...plantData, id: Date.now() }];
-    }
-    setPlants(updatedPlants);
-    handleCloseModal();
-  };
-
-  const handleDeletePlant = (id: number) => {
-    const updatedPlants = plants.filter(p => p.id !== id);
-    setPlants(updatedPlants);
-  };
-
-  // Fungsi untuk menghasilkan data pembahasan dengan info repetisi
-  const getDiscussionsWithRepetitionInfo = (plantIndex: number): DiscussionItem[] => {
-      const discussions = ['Pembahasan 1', 'Pembahasan 2', 'Pembahasan 3'];
-      return discussions.map((text, discussionIndex) => {
-          const date = new Date();
-          // Logika tanggal bisa disesuaikan, ini hanya contoh sederhana
-          date.setDate(date.getDate() + (plantIndex * 10) + discussionIndex); 
-          const day = String(date.getDate()).padStart(2, '0');
-          const month = String(date.getMonth() + 1).padStart(2, '0');
-          const year = date.getFullYear();
-          const repetition = `R${discussionIndex + 1}D`;
-          return {
-              text: text,
-              repetitionInfo: `${day}-${month}-${year} / ${repetition}`
-          };
-      });
-  }
 
   return (
     <>
@@ -78,36 +24,28 @@ const DashboardView = () => {
           <h2 className="text-3xl font-bold text-slate-800">Koleksi Saya</h2>
           <p className="text-slate-500 mt-1">Daftar materi yang sedang Anda pelajari.</p>
         </div>
-        <Button onClick={() => handleOpenModal()} icon={<Plus className="w-5 h-5" />}>
-          Tambah Materi
-        </Button>
       </header>
       
       {plants.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {plants.map((plant, index) => (
-            <Card 
-              key={plant.id} 
-              plant={plant}
-              discussions={getDiscussionsWithRepetitionInfo(index)}
-              onEdit={handleOpenModal}
-              onDelete={handleDeletePlant}
-            />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {plants.map(plant => {
+            // Saring diskusi yang relevan untuk setiap tanaman berdasarkan plant.id
+            const plantDiscussions = discussions.filter(d => d.plantId === plant.id);
+            return (
+              <Card 
+                key={plant.id}
+                plant={plant} 
+                discussions={plantDiscussions} // Teruskan data diskusi yang sudah disaring
+              />
+            );
+          })}
         </div>
       ) : (
         <div className="text-center py-16">
           <h3 className="text-xl font-semibold text-slate-700">Koleksi masih kosong.</h3>
-          <p className="text-slate-500 mt-2">Klik tombol 'Tambah Materi' untuk memulai.</p>
+          <p className="text-slate-500 mt-2">Data tanaman akan ditampilkan di sini.</p>
         </div>
       )}
-
-      <FormModal 
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onSave={handleSavePlant}
-        plantToEdit={plantToEdit}
-      />
     </>
   );
 };
