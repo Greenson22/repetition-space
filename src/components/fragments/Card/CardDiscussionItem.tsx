@@ -8,9 +8,9 @@ type CardDiscussionItemProps = {
 
 const CardDiscussionItem = ({ discussion }: CardDiscussionItemProps) => {
   return (
-    <div className="justify-between items-center py-3">
-      <span>{discussion.text}</span>
-      <span className="text-xs text-slate-500 whitespace-nowrap block">{discussion.repetitionInfo}</span>
+    <div className="py-3">
+      <p className="truncate">{discussion.text}</p>
+      <p className="text-xs text-slate-500">{discussion.repetitionInfo}</p>
     </div>
   );
 };

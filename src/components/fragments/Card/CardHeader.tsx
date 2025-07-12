@@ -9,7 +9,7 @@ const CardHeader = ({ name, repetitionInfo }: CardHeaderProps) => {
   return (
     <div className="p-5">
       <div>
-        <h4 className="text-lg font-bold text-slate-800">{name}</h4>
+        <h4 className="text-lg font-bold text-slate-800 truncate">{name}</h4>
         {repetitionInfo && (
           <span className="text-xs text-slate-500 mt-1 block">
             {repetitionInfo}
