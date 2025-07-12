@@ -15,6 +15,12 @@ export type Plant = {
   discussions: DiscussionItem[]; 
 };
 
+export type Discussion = {
+  id: number;
+  text: string;
+  repetitionInfo: string;
+};
+
 // Data yang sudah diperbarui
 export const defaultData: Plant[] = [
   {
