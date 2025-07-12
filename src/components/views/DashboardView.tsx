@@ -24,10 +24,10 @@ const DashboardView = () => {
       
       {data.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {data.map(plant => (
+          {data.map(data => (
             <Card 
-              key={plant.id}
-              plant={plant} 
+              key={data.id}
+              plant={data} 
             />
           ))}
         </div>
