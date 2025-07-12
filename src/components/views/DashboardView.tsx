@@ -27,7 +27,7 @@ const DashboardView = () => {
           {data.map(data => (
             <Card 
               key={data.id}
-              plant={data} 
+              data={data} 
             />
           ))}
         </div>
