@@ -4,19 +4,19 @@ import type { Plant } from '@/lib/data';
 
 // Props sekarang hanya menerima satu objek Plant
 type CardProps = {
-  plant: Plant;
+  data: Plant;
 };
 
-const Card = ({ plant }: CardProps) => {
+const Card = ({ data }: CardProps) => {
   // Mengakses 'discussions' dari dalam objek 'plant'
-  const { discussions } = plant;
+  const { discussions } = data;
 
   return (
     <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
       {/* BAGIAN ATAS KARTU */}
       <div className="p-5">
         <div>
-          <h4 className="text-lg font-bold text-slate-800">{plant.name}</h4>
+          <h4 className="text-lg font-bold text-slate-800">{data.name}</h4>
           {discussions.length > 0 && (
             <span className="text-xs text-slate-500 mt-1 block">
               {discussions[0].repetitionInfo}
