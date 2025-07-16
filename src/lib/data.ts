@@ -24,15 +24,35 @@ export type Discussion = {
 // Data yang sudah diperbarui
 export const defaultData: Plant[] = [
   {
-    id: 1,
-    name: 'Kejadian',
-    discussions: [
-      { id: 1, text: 'Makna Penciptaan dalam 6 Hari', repetitionInfo: '10 Jul 2025 / R3D' },
-      { id: 2, text: 'Dosa Pertama dan Konsekuensinya', repetitionInfo: '12 Jul 2025 / R1D' },
-      { id: 3, text: 'Nuh dan Bahtera: Simbol Keselamatan', repetitionInfo: '15 Jul 2025 / R5D' },
-      { id: 26, text: 'Menara Babel dan Kesombongan Manusia', repetitionInfo: '17 Jul 2025 / R2D' },
-      { id: 27, text: 'Panggilan Abraham: Iman dan Pengorbanan', repetitionInfo: '19 Jul 2025 / R4D' },
-    ],
+    "id": 1,
+    "name": "Kejadian",
+    "discussions": [
+      { "id": 1, "text": "Makna Penciptaan dalam 6 Hari", "repetitionInfo": "10 Jul 2025 / R3D" },
+      { "id": 2, "text": "Dosa Pertama dan Konsekuensinya", "repetitionInfo": "12 Jul 2025 / R1D" },
+      { "id": 3, "text": "Nuh dan Bahtera: Simbol Keselamatan", "repetitionInfo": "15 Jul 2025 / R5D" },
+      { "id": 26, "text": "Menara Babel dan Kesombongan Manusia", "repetitionInfo": "17 Jul 2025 / R2D" },
+      { "id": 27, "text": "Panggilan Abraham: Iman dan Pengorbanan", "repetitionInfo": "19 Jul 2025 / R4D" },
+      { "id": 50, "text": "Kain dan Habel: Persembahan yang Diterima", "repetitionInfo": "21 Jul 2025 / R1D" },
+      { "id": 51, "text": "Perjanjian Allah dengan Nuh: Tanda Pelangi", "repetitionInfo": "23 Jul 2025 / R2D" },
+      { "id": 52, "text": "Kisah Lot dan Kehancuran Sodom dan Gomora", "repetitionInfo": "25 Jul 2025 / R3D" },
+      { "id": 53, "text": "Ujian Iman Abraham: Pengorbanan Ishak", "repetitionInfo": "27 Jul 2025 / R4D" },
+      { "id": 54, "text": "Esau dan Yakub: Hak Kesulungan yang Terjual", "repetitionInfo": "29 Jul 2025 / R5D" },
+      { "id": 55, "text": "Mimpi Yakub tentang Tangga ke Surga", "repetitionInfo": "31 Jul 2025 / R1D" },
+      { "id": 56, "text": "Yakub Bergulat dengan Allah: Nama Baru Israel", "repetitionInfo": "02 Agu 2025 / R2D" },
+      { "id": 57, "text": "Yusuf dan Jubah Mahaindah", "repetitionInfo": "04 Agu 2025 / R3D" },
+      { "id": 58, "text": "Yusuf Dijual sebagai Budak oleh Saudara-saudaranya", "repetitionInfo": "06 Agu 2025 / R4D" },
+      { "id": 59, "text": "Yusuf di Mesir: Dari Penjara ke Istana", "repetitionInfo": "08 Agu 2025 / R5D" },
+      { "id": 60, "text": "Tafsir Mimpi Firaun oleh Yusuf", "repetitionInfo": "10 Agu 2025 / R1D" },
+      { "id": 61, "text": "Pertemuan Kembali Yusuf dengan Saudara-saudaranya", "repetitionInfo": "12 Agu 2025 / R2D" },
+      { "id": 62, "text": "Pengampunan Yusuf: 'Allah Telah Merekakannya untuk Kebaikan'", "repetitionInfo": "14 Agu 2025 / R3D" },
+      { "id": 63, "text": "Penciptaan Manusia: Gambar dan Rupa Allah", "repetitionInfo": "16 Agu 2025 / R4D" },
+      { "id": 64, "text": "Ular di Taman Eden: Awal Mula Godaan", "repetitionInfo": "18 Agu 2025 / R5D" },
+      { "id": 65, "text": "Perjanjian Sunat dengan Abraham", "repetitionInfo": "20 Agu 2025 / R1D" },
+      { "id": 66, "text": "Kisah Hagar dan Ismael di Padang Gurun", "repetitionInfo": "22 Agu 2025 / R2D" },
+      { "id": 67, "text": "Lea dan Rahel: Persaingan dalam Keluarga Yakub", "repetitionInfo": "24 Agu 2025 / R3D" },
+      { "id": 68, "text": "Asal Usul Dua Belas Suku Israel", "repetitionInfo": "26 Agu 2025 / R4D" },
+      { "id": 69, "text": "Berkat Yakub kepada Anak-anaknya", "repetitionInfo": "28 Agu 2025 / R5D" }
+    ]
   },
   {
     id: 2,
